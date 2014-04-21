@@ -3,7 +3,8 @@ cocur/nqm
 
 > Named Query Manager helps you SQL organise queries in files.
 
-[![Build Status](http://img.shields.io/travis/cocur/slugify.svg)](https://travis-ci.org/cocur/slugify)
+[![Build Status](http://img.shields.io/travis/cocur/nqm.svg)](https://travis-ci.org/cocur/nqm)
+[![Code Coverage](http://img.shields.io/coveralls/cocur/nqm.svg)](https://coveralls.io/r/cocur/nqm)
 
 Features
 --------
