@@ -9,19 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Cocur\NQM;
+namespace Cocur\NQM\QueryLoader;
 
 use Cocur\NQM\Exception\QueryNotExistsException;
 
 /**
- * QueryLoader
+ * Filesystem
  *
- * @package   cocur/nqm
- * @author    Florian Eckerstorfer <florian@eckerstorfer.co>
- * @copyright 2013 Florian Eckerstorfer
- * @license   http://opensource.org/licenses/MIT The MIT License
+ * @package    cocur/nqm
+ * @subpackage queryloader
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
  */
-class QueryLoader
+class Filesystem
 {
     /** @var string */
     private $rootDir;
@@ -43,7 +44,7 @@ class QueryLoader
      *
      * @param string $rootDir The root directory.
      *
-     * @return QueryLoader
+     * @return Filesystem
      */
     public function setRootDir($rootDir)
     {
@@ -63,11 +64,7 @@ class QueryLoader
     }
 
     /**
-     * Returns whether a query with the given name exists.
-     *
-     * @param string $name Name of a query.
-     *
-     * @return boolean `true` if the query exists, `false` otherwise.
+     * {@inheritDoc}
      */
     public function hasQuery($name)
     {
@@ -77,13 +74,7 @@ class QueryLoader
     }
 
     /**
-     * Returns the query with the given name.
-     *
-     * @param string $name Name of a query.
-     *
-     * @return string SQL code of the query with the given name.
-     *
-     * @throws QueryNotExistsException if no query with the given name exists.
+     * {@inheritDoc}
      */
     public function getQuery($name)
     {
