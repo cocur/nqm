@@ -1,7 +1,7 @@
 cocur/nqm
 =========
 
-> Named Query Manager
+> Named Query Manager helps you SQL organise queries in files.
 
 
 Features

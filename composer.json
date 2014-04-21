@@ -1,8 +1,8 @@
 {
     "name": "cocur/nqm",
     "type": "library",
-    "description": "Named Query Manager helps you organise queries in files.",
-    "keywords": ["database", "queery", "pdo"],
+    "description": "Named Query Manager helps you SQL organise queries in files.",
+    "keywords": ["database", "queery", "pdo", "sql"],
     "license": "MIT",
     "authors": [
         {
