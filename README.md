@@ -23,7 +23,7 @@ Changelog
 Author
 ------
 
-### [Florian Eckerstorfer](http://florian.ec) [![Support Florian](http://img.shields.io/gittip/florianeckerstorfer.svg)
+### [Florian Eckerstorfer](http://florian.ec) [![Support Florian](http://img.shields.io/gittip/florianeckerstorfer.svg)](https://www.gittip.com/FlorianEckerstorfer/)]
 
 - [Twitter](http://twitter.com/Florian_)
 - [App.net](http://app.net/florian)
