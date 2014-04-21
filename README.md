@@ -23,11 +23,43 @@ You can install `cocur/nqm` using Composer:
 $ composer require cocur/nqm:@dev
 ```
 
-*Currently there no stable version of NQM exists.*
+*Currently no stable version of NQM exists.*
 
 
 Usage
 -----
+
+In order to use NQM you need to initialise the `Cocur\NQM\NQM` class with an instance of `\PDO` and a query loader. NQM comes with a Filesystem query loader.
+
+```php
+use Cocur\NQM\NQM;
+use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+
+$loader = new FilesystemQueryLoader(__DIR__.'/queries');
+$pdo = new \PDO(...);
+$nqm = new NQM($pdo, $loader);
+```
+
+After you have initialised the `NQM` object you can use it. Currently the class has three public methods to retrieve a query, prepare a statement or execute a statement.
+
+The following command will return the SQL query stored in `./queries/find-all-users.sql`.
+
+```php
+$nqm->getQuery('find-all-users');
+```
+
+NQM can also return a `\PDOStatement` object directly:
+
+```php
+$stmt = $nqm->prepare('find-all-users');
+$stmt->execute();
+```
+
+Or you can immediately execute the statement:
+
+```php
+$stmt = $nqm->execute('find-user-by-id', [':id' => 42]);
+```
 
 
 Changelog
@@ -37,7 +69,7 @@ Changelog
 Author
 ------
 
-### [Florian Eckerstorfer](http://florian.ec) [![Support Florian](http://img.shields.io/gittip/florianeckerstorfer.svg)](https://www.gittip.com/FlorianEckerstorfer/)
+#### [Florian Eckerstorfer](http://florian.ec) [![Support Florian](http://img.shields.io/gittip/florianeckerstorfer.svg)](https://www.gittip.com/FlorianEckerstorfer/)
 
 - [Twitter](http://twitter.com/Florian_)
 - [App.net](http://app.net/florian)
