@@ -7,9 +7,21 @@ cocur/nqm
 Features
 --------
 
+- Wrapper for PDO
+- Stores queries on the filesystem
+- Compatible with PHP >= 5.4 and HHVM
+
 
 Installation
 ------------
+
+You can install `cocur/nqm` using Composer:
+
+```shell
+$ composer require cocur/nqm:@dev
+```
+
+*Currently there no stable version of NQM exists.*
 
 
 Usage
