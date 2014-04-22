@@ -119,10 +119,11 @@ class NQMTest extends \PHPUnit_Framework_TestCase
      * @test
      *
      * @covers Cocur\NQM\NQM::execute()
+     * @covers Cocur\NQM\NQM::convertParameters()
      */
     public function executeShouldExecutePdoStatement()
     {
-        $this->pdo->mock('SELECT * FROM table WHERE key = :key;', [ [ 'key' => 'foo' ] ]);
+        $this->pdo->mock('SELECT * FROM table WHERE key = :key;', [ [ ':key' => 'foo' ] ]);
         $this->queryLoader
             ->shouldReceive('getQuery')
             ->with('foo')
@@ -131,7 +132,27 @@ class NQMTest extends \PHPUnit_Framework_TestCase
 
         $stmt = $this->nqm->execute('foo', [ 'key' => 'foo' ]);
         $this->assertInstanceOf('\PDOStatement', $stmt);
-        $this->assertEquals([ 'key' => 'foo' ], $stmt->fetch(\PDO::FETCH_ASSOC));
+        $this->assertEquals([ ':key' => 'foo' ], $stmt->fetch(\PDO::FETCH_ASSOC));
+    }
+
+    /**
+     * @test
+     *
+     * @covers Cocur\NQM\NQM::execute()
+     * @covers Cocur\NQM\NQM::convertParameters()
+     */
+    public function convertParametersShouldNotAddColonIfItIsThere()
+    {
+        $this->pdo->mock('SELECT * FROM table WHERE key = :key;', [ [ ':key' => 'foo' ] ]);
+        $this->queryLoader
+            ->shouldReceive('getQuery')
+            ->with('foo')
+            ->once()
+            ->andReturn('SELECT * FROM table WHERE key = :key;');
+
+        $stmt = $this->nqm->execute('foo', [ ':key' => 'foo' ]);
+        $this->assertInstanceOf('\PDOStatement', $stmt);
+        $this->assertEquals([ ':key' => 'foo' ], $stmt->fetch(\PDO::FETCH_ASSOC));
     }
 
     /**
