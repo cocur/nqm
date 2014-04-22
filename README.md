@@ -61,6 +61,21 @@ Or you can immediately execute the statement:
 $stmt = $nqm->execute('find-user-by-id', [':id' => 42]);
 ```
 
+### Query Cache
+
+To speed up loading of queries you can use the `Cocur\NQM\QueryLoader\Cache` to cache queries. The cache class implements the same interface as the other query loaders and the constructor accepts an instance of `QueryLoaderInterface`. If a query does not exist in the cache, the cache uses this loader to load the query. For example,
+
+```php
+use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+use Cocur\NQM\QueryLoader\Cache as CacheQueryLoader;
+
+$loader = new FilesystemQueryLoader(__DIR__.'/queries');
+$cache = new CacheQueryLoader($loader);
+
+$pdo = new \PDO(...);
+$nqm = new NQM($pdo, $loader);
+```
+
 
 Changelog
 ---------
