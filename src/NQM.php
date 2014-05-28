@@ -16,12 +16,12 @@ use PDO;
 /**
  * NQM
  *
- *      use Cocur\NQM\NQM;
- *      use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+ *     use Cocur\NQM\NQM;
+ *     use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
  *
- *      $loader = new FilesystemQueryLoader(__DIR__.'/queries');
- *      $pdo = new \PDO(...);
- *      $nqm = new NQM($pdo, $loader);
+ *     $loader = new FilesystemQueryLoader(__DIR__.'/queries');
+ *     $pdo = new \PDO(...);
+ *     $nqm = new NQM($pdo, $loader);
  *
  * @package   cocur/nqm
  * @author    Florian Eckerstorfer <florian@eckerstorfer.co>
@@ -115,7 +115,7 @@ class NQM
     /**
      * Prepares a named query for execution.
      *
-     *      $stmt = $nqm->prepare('find-all-users');
+     * $stmt = $nqm->prepare('find-all-users');
      *      $stmt->execute();
      *
      * @param string $name    Name of a query.
@@ -131,7 +131,7 @@ class NQM
     /**
      * Executes the named query with the given parameters.
      *
-     * `$stmt = $nqm->execute('find-user-by-id', [':id' => 42]);`
+     * $stmt = $nqm->execute('find-user-by-id', [':id' => 42]);`
      *
      * @param string $name       Name of query.
      * @param array  $parameters List of parameters to bind to the statement.
