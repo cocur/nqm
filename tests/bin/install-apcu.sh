@@ -5,6 +5,11 @@ then
     exit 0
 fi
 
+if [ "$TRAVIS_PHP_VERSION" == "hhvm" ]
+then
+    exit 0
+fi
+
 # this is helpful to compile extension
 sudo apt-get install autoconf
 
