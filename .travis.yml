@@ -7,8 +7,6 @@ php:
   - hhvm
 
 before_script:
-  - chmod +x tests/bin/install-apcu.sh
-  - ./tests/bin/install-apcu.sh
   - wget http://getcomposer.org/composer.phar
   - php composer.phar --prefer-source --dev install
   - cp phpunit.xml.dist phpunit.xml
