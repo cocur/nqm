@@ -14,7 +14,8 @@ namespace Cocur\NQM;
 use PDO;
 
 /**
- * NQM
+ * Named Query Manager can be used to execute PDO requests based on query names. The queries are stored in the
+ * filesystem (or using a cache like APC) and are retrieved when needed.
  *
  *     use Cocur\NQM\NQM;
  *     use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
@@ -99,7 +100,7 @@ class NQM
     /**
      * Returns the query with the given name.
      *
-     * `$nqm->getQuery('find-all-users');`
+     *     $nqm->getQuery('find-all-users');
      *
      * @param string $name Name of a query.
      *
@@ -115,8 +116,8 @@ class NQM
     /**
      * Prepares a named query for execution.
      *
-     * $stmt = $nqm->prepare('find-all-users');
-     *      $stmt->execute();
+     *     $stmt = $nqm->prepare('find-all-users');
+     *     $stmt->execute();
      *
      * @param string $name    Name of a query.
      * @param array  $options Options, will be used to call `\PDO::prepare()`.
@@ -131,7 +132,7 @@ class NQM
     /**
      * Executes the named query with the given parameters.
      *
-     * $stmt = $nqm->execute('find-user-by-id', [':id' => 42]);`
+     *     $stmt = $nqm->execute('find-user-by-id', [':id' => 42]);
      *
      * @param string $name       Name of query.
      * @param array  $parameters List of parameters to bind to the statement.
