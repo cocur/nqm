@@ -16,10 +16,8 @@ namespace Cocur\NQM\QueryLoader;
  *
  *     use Cocur\NQM\QueryLoader\Cache as CacheQueryLoader;
  *     use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
- *
  *     $loader = new FilesystemQueryLoader(__DIR__.'/queries');
  *     $cache = new CacheQueryLoader($loader);
- *
  *     $pdo = new \PDO(...);
  *     $nqm = new NQM($pdo, $cache);
  *
