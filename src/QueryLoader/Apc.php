@@ -14,12 +14,14 @@ namespace Cocur\NQM\QueryLoader;
 /**
  * Caches queries in APC. Requires another query loader as fallback.
  *
- *     use Cocur\NQM\QueryLoader\Apc as ApcQueryLoader;
- *     use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
- *     $loader = new FilesystemQueryLoader(__DIR__.'/queries');
- *     $apc = new ApcQueryLoader($loader);
- *     $pdo = new \PDO(...);
- *     $nqm = new NQM($pdo, $apc);
+ *      use Cocur\NQM\QueryLoader\Apc as ApcQueryLoader;
+ *      use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+ *
+ *      $loader = new FilesystemQueryLoader(__DIR__.'/queries');
+ *      $apc = new ApcQueryLoader($loader);
+ *
+ *      $pdo = new \PDO(...);
+ *      $nqm = new NQM($pdo, $apc);
  *
  * @package    cocur/nqm
  * @subpackage queryloader
