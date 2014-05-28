@@ -14,7 +14,7 @@ namespace Cocur\NQM\QueryLoader;
 use Cocur\NQM\Exception\QueryNotExistsException;
 
 /**
- * Filesystem
+ * Load queries from the filesystem.
  *
  * @package    cocur/nqm
  * @subpackage queryloader

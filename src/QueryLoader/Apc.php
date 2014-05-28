@@ -12,9 +12,7 @@
 namespace Cocur\NQM\QueryLoader;
 
 /**
- * Apc
- *
- * Implements a cache based on APC.
+ * Caches queries in APC. Requires another query loader as fallback.
  *
  * @package    cocur/nqm
  * @subpackage queryloader

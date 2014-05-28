@@ -12,7 +12,7 @@
 namespace Cocur\NQM\QueryLoader;
 
 /**
- * Cache
+ * Caches queries in an array. Requires another query loader as a fallback.
  *
  * @package    cocur/nqm
  * @subpackage queryloader
