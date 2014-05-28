@@ -21,3 +21,6 @@ wget http://pecl.php.net/get/apcu-$APCU.tgz
 tar zxvf apcu-$APCU.tgz
 cd "apcu-${APCU}"
 phpize && ./configure && make install && echo "Installed ext/apcu-${APCU}"
+
+phpenv config-add tests/$TRAVIS_PHP_VERSION.ini
+phpenv config-add tests/apc.ini
