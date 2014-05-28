@@ -20,6 +20,16 @@ class ApcTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        if (!function_exists('apc_clear_cache')) {
+            $this->markTestSkipped('APC extension is not installed.');
+
+            return;
+        }
+
+        if (!apc_store('nqm_test_foo', 'foobar') || apc_fetch('nqm_test_foo') !== 'foobar') {
+            $this->markTestSkipped('APC extension is not working correctly.');
+        }
+
         apc_clear_cache();
         $this->loader = m::mock('Cocur\NQM\QueryLoader\QueryLoaderInterface');
         $this->cache = new Apc($this->loader, 'nqm_test.');
