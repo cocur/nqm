@@ -11,8 +11,8 @@
 
 namespace Cocur\NQM\QueryLoader;
 
-use \Mockery as m;
 use Cocur\NQM\QueryLoader\Cache;
+use Mockery as m;
 
 /**
  * CacheTest

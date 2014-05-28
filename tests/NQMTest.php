@@ -11,10 +11,9 @@
 
 namespace Cocur\NQM;
 
-use \Mockery as m;
-use Pseudo\Pdo;
-
 use Cocur\NQM\NQM;
+use Mockery as m;
+use Pseudo\Pdo;
 
 /**
  * NQMTest

@@ -11,6 +11,8 @@
 
 namespace Cocur\NQM;
 
+use PDO;
+
 /**
  * NQM
  *
@@ -33,7 +35,7 @@ class NQM
      * @param PDO         $pdo
      * @param QueryLoader $queryLoader
      */
-    public function __construct(\PDO $pdo, QueryLoader $queryLoader)
+    public function __construct(PDO $pdo, QueryLoader $queryLoader)
     {
         $this->pdo = $pdo;
         $this->queryLoader = $queryLoader;
@@ -42,11 +44,11 @@ class NQM
     /**
      * Sets the PDO connection.
      *
-     * @param \PDO $pdo PDO connection
+     * @param PDO $pdo PDO connection
      *
      * @return NQM
      */
-    public function setPdo(\PDO $pdo)
+    public function setPdo(PDO $pdo)
     {
         $this->pdo = $pdo;
 
@@ -56,7 +58,7 @@ class NQM
     /**
      * Returns the PDO connection.
      *
-     * @return \PDO PDO connection.
+     * @return PDO PDO connection.
      */
     public function getPdo()
     {
@@ -132,7 +134,7 @@ class NQM
     }
 
     /**
-     * Appends a colon to each parameter key.
+     * Prepends a colon to each parameter key.
      *
      * @param array $parameters
      *
