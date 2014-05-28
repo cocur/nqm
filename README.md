@@ -21,10 +21,10 @@ Installation
 You can install `cocur/nqm` using Composer:
 
 ```shell
-$ composer require cocur/nqm:@dev
+$ composer require cocur/nqm:@stable
 ```
 
-*Currently no stable version of NQM exists.*
+*Tipp: Use a concrete [version](https://github.com/cocur/nqm/releases) instead of `@stable`.*
 
 
 Usage
@@ -110,6 +110,10 @@ $nqm = new NQM($pdo, $cache);
 
 Changelog
 ---------
+
+### Version 0.1 (28 May 2014)
+
+- Initial release
 
 
 Author
