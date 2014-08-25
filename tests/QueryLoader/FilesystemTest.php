@@ -15,8 +15,6 @@ use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamFile;
 use org\bovigo\vfs\vfsStreamWrapper;
 
-use Cocur\NQM\QueryLoader\FilesystemQueryLoaderQueryLoader;
-
 /**
  * FilesystemTest
  *

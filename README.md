@@ -119,6 +119,10 @@ $nqm = new NQM($pdo, $cache);
 Change log
 ----------
 
+### Version 0.1.1 (26 August 2014)
+
+- Renamed query loader class names
+
 ### Version 0.1 (28 May 2014)
 
 - Initial release
