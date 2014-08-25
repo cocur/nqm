@@ -4,4 +4,5 @@
 /vendor/
 /*.sublime-project
 /*.sublime-workspace
+/.idea/
 /composer.lock

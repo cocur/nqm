@@ -11,7 +11,7 @@
 
 namespace Cocur\NQM\QueryLoader;
 
-use Cocur\NQM\QueryLoader\Cache;
+use Cocur\NQM\QueryLoader\CacheQueryLoaderQueryLoader;
 use Mockery as m;
 
 /**
@@ -26,22 +26,24 @@ use Mockery as m;
  */
 class CacheTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Cocur\NQM\QueryLoader\QueryLoaderInterface */
+    /** @var \Cocur\NQM\QueryLoader\QueryLoaderInterface|\Mockery\MockInterface */
     private $loader;
 
-    /** @var Cache */
+    /** @var CacheQueryLoader */
     private $cache;
 
     public function setUp()
     {
-        $this->loader = m::mock('Cocur\NQM\QueryLoader\QueryLoaderInterface');
-        $this->cache = new Cache($this->loader);
+        /** @var \Cocur\NQM\QueryLoader\QueryLoaderInterface $loader */
+        $loader = $this->loader = m::mock('Cocur\NQM\QueryLoader\QueryLoaderInterface');
+
+        $this->cache = new CacheQueryLoader($loader);
     }
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Cache::__construct()
-     * @covers Cocur\NQM\QueryLoader\Cache::getLoader()
+     * @covers Cocur\NQM\QueryLoader\CacheQueryLoader::__construct()
+     * @covers Cocur\NQM\QueryLoader\CacheQueryLoader::getLoader()
      */
     public function getLoader()
     {
@@ -50,7 +52,7 @@ class CacheTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Cache::hasQuery()
+     * @covers Cocur\NQM\QueryLoader\CacheQueryLoader::hasQuery()
      */
     public function hasQueryReturnsTrueIfQueryIsCached()
     {
@@ -63,7 +65,7 @@ class CacheTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Cache::hasQuery()
+     * @covers Cocur\NQM\QueryLoader\CacheQueryLoader::hasQuery()
      */
     public function hasQueryReturnsTrueIfQueryIsNotCachedButExists()
     {
@@ -75,7 +77,7 @@ class CacheTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Cache::hasQuery()
+     * @covers Cocur\NQM\QueryLoader\CacheQueryLoader::hasQuery()
      */
     public function hasQueryReturnsFalseIfQueryIsNotCachedAndNotExists()
     {
@@ -87,7 +89,7 @@ class CacheTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Cache::getQuery()
+     * @covers Cocur\NQM\QueryLoader\CacheQueryLoader::getQuery()
      */
     public function getQueryReturnsQueryIfQueryIsCached()
     {
@@ -99,7 +101,7 @@ class CacheTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Cache::getQuery()
+     * @covers Cocur\NQM\QueryLoader\CacheQueryLoader::getQuery()
      */
     public function getQueryReturnsQueryIfQueryIsNotCachedButExists()
     {
@@ -110,8 +112,8 @@ class CacheTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Cache::getQuery()
-     * @expectedException Cocur\NQM\Exception\QueryNotExistsException
+     * @covers Cocur\NQM\QueryLoader\CacheQueryLoader::getQuery()
+     * @expectedException \Cocur\NQM\Exception\QueryNotExistsException
      */
     public function getQueryThrowsExceptionIfQueryDoesNotExist()
     {

@@ -14,8 +14,8 @@ namespace Cocur\NQM\QueryLoader;
 /**
  * Caches queries in an array. Requires another query loader as a fallback.
  *
- *     use Cocur\NQM\QueryLoader\Cache as CacheQueryLoader;
- *     use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+ *     use Cocur\NQM\QueryLoader\CacheQueryLoader;
+ *     use Cocur\NQM\QueryLoader\FilesystemQueryLoader;
  *
  *     $loader = new FilesystemQueryLoader(__DIR__.'/queries');
  *     $cache = new CacheQueryLoader($loader);
@@ -29,7 +29,7 @@ namespace Cocur\NQM\QueryLoader;
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  */
-class Cache
+class CacheQueryLoader implements QueryLoaderInterface
 {
     /** @var QueryLoaderInterface */
     private $loader;

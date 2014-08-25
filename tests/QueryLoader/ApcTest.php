@@ -11,7 +11,7 @@
 
 namespace Cocur\NQM\QueryLoader;
 
-use Cocur\NQM\QueryLoader\Apc;
+use Cocur\NQM\QueryLoader\ApcQueryLoaderQueryLoader;
 use Mockery as m;
 
 /**
@@ -28,10 +28,10 @@ use Mockery as m;
  */
 class ApcTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Cocur\NQM\QueryLoader\QueryLoaderInterface */
+    /** @var \Cocur\NQM\QueryLoader\QueryLoaderInterface|\Mockery\MockInterface */
     private $loader;
 
-    /** @var Apc */
+    /** @var ApcQueryLoader */
     private $cache;
 
     public function setUp()
@@ -47,14 +47,16 @@ class ApcTest extends \PHPUnit_Framework_TestCase
         }
 
         apc_clear_cache();
-        $this->loader = m::mock('Cocur\NQM\QueryLoader\QueryLoaderInterface');
-        $this->cache = new Apc($this->loader, 'nqm_test.');
+        /** @var \Cocur\NQM\QueryLoader\QueryLoaderInterface $loader */
+        $loader = $this->loader = m::mock('Cocur\NQM\QueryLoader\QueryLoaderInterface');
+
+        $this->cache = new ApcQueryLoader($loader, 'nqm_test.');
     }
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Apc::__construct()
-     * @covers Cocur\NQM\QueryLoader\Apc::getLoader()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::__construct()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getLoader()
      */
     public function getLoader()
     {
@@ -63,7 +65,7 @@ class ApcTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Apc::getApcPrefix()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getApcPrefix()
      */
     public function getApcPrefixReturnsApcPrefix()
     {
@@ -72,8 +74,8 @@ class ApcTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Apc::hasQuery()
-     * @covers Cocur\NQM\QueryLoader\Apc::getApcName()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::hasQuery()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getApcName()
      */
     public function hasQueryReturnsTrueIfQueryIsCached()
     {
@@ -86,8 +88,8 @@ class ApcTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Apc::hasQuery()
-     * @covers Cocur\NQM\QueryLoader\Apc::getApcName()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::hasQuery()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getApcName()
      */
     public function hasQueryReturnsTrueIfQueryIsNotCachedButExists()
     {
@@ -99,8 +101,8 @@ class ApcTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Apc::hasQuery()
-     * @covers Cocur\NQM\QueryLoader\Apc::getApcName()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::hasQuery()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getApcName()
      */
     public function hasQueryReturnsFalseIfQueryIsNotCachedAndNotExists()
     {
@@ -112,8 +114,8 @@ class ApcTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Apc::getQuery()
-     * @covers Cocur\NQM\QueryLoader\Apc::getApcName()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getQuery()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getApcName()
      */
     public function getQueryReturnsQueryIfQueryIsCached()
     {
@@ -125,8 +127,8 @@ class ApcTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Apc::getQuery()
-     * @covers Cocur\NQM\QueryLoader\Apc::getApcName()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getQuery()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getApcName()
      */
     public function getQueryReturnsQueryIfQueryIsNotCachedButExists()
     {
@@ -137,9 +139,9 @@ class ApcTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\QueryLoader\Apc::getQuery()
-     * @covers Cocur\NQM\QueryLoader\Apc::getApcName()
-     * @expectedException Cocur\NQM\Exception\QueryNotExistsException
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getQuery()
+     * @covers Cocur\NQM\QueryLoader\ApcQueryLoader::getApcName()
+     * @expectedException \Cocur\NQM\Exception\QueryNotExistsException
      */
     public function getQueryThrowsExceptionIfQueryDoesNotExist()
     {

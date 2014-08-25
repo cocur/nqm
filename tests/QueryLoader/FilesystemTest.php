@@ -11,12 +11,11 @@
 
 namespace Cocur\NQM\QueryLoader;
 
-use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamFile;
 use org\bovigo\vfs\vfsStreamWrapper;
 
-use Cocur\NQM\QueryLoader\Filesystem;
+use Cocur\NQM\QueryLoader\FilesystemQueryLoaderQueryLoader;
 
 /**
  * FilesystemTest
@@ -30,7 +29,7 @@ use Cocur\NQM\QueryLoader\Filesystem;
  */
 class FilesystemTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Filesystem */
+    /** @var FilesystemQueryLoader */
     private $loader;
 
     /** @var vfsStreamDirectory */
@@ -42,14 +41,14 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
         vfsStreamWrapper::register();
         vfsStreamWrapper::setRoot($this->rootDir);
 
-        $this->loader = new Filesystem($this->rootDir->url());
+        $this->loader = new FilesystemQueryLoader($this->rootDir->url());
     }
 
     /**
      * @test
      *
-     * @covers Cocur\NQM\QueryLoader\Filesystem::setRootDir()
-     * @covers Cocur\NQM\QueryLoader\Filesystem::getRootDir()
+     * @covers Cocur\NQM\QueryLoader\FilesystemQueryLoader::setRootDir()
+     * @covers Cocur\NQM\QueryLoader\FilesystemQueryLoader::getRootDir()
      */
     public function setRootDirShouldSetRootDir()
     {
@@ -60,19 +59,19 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Cocur\NQM\QueryLoader\Filesystem::__construct()
+     * @covers Cocur\NQM\QueryLoader\FilesystemQueryLoader::__construct()
      */
     public function constructorShouldSetRootDir()
     {
-        $loader = new Filesystem('./queries');
+        $loader = new FilesystemQueryLoader('./queries');
         $this->assertEquals('./queries', $loader->getRootDir());
     }
 
     /**
      * @test
      *
-     * @covers Cocur\NQM\QueryLoader\Filesystem::hasQuery()
-     * @covers Cocur\NQM\QueryLoader\Filesystem::getQueryFilename()
+     * @covers Cocur\NQM\QueryLoader\FilesystemQueryLoader::hasQuery()
+     * @covers Cocur\NQM\QueryLoader\FilesystemQueryLoader::getQueryFilename()
      */
     public function hasQueryShouldReturnIfQueryExists()
     {
@@ -85,8 +84,8 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Cocur\NQM\QueryLoader\Filesystem::getQuery()
-     * @covers Cocur\NQM\QueryLoader\Filesystem::getQueryFilename()
+     * @covers Cocur\NQM\QueryLoader\FilesystemQueryLoader::getQuery()
+     * @covers Cocur\NQM\QueryLoader\FilesystemQueryLoader::getQueryFilename()
      */
     public function getQueryShouldReturnQuery()
     {
@@ -100,10 +99,10 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Cocur\NQM\QueryLoader\Filesystem::getQuery()
-     * @covers Cocur\NQM\QueryLoader\Filesystem::getQueryFilename()
+     * @covers Cocur\NQM\QueryLoader\FilesystemQueryLoader::getQuery()
+     * @covers Cocur\NQM\QueryLoader\FilesystemQueryLoader::getQueryFilename()
      *
-     * @expectedException Cocur\NQM\Exception\QueryNotExistsException
+     * @expectedException \Cocur\NQM\Exception\QueryNotExistsException
      */
     public function getQueryShouldThrowExceptionIfQueryDoesNotExist()
     {

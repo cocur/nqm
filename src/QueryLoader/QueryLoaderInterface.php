@@ -38,7 +38,7 @@ interface QueryLoaderInterface
      *
      * @return string SQL code of the query with the given name.
      *
-     * @throws Cocur\NQM\Exception\QueryNotExistsException if no query with the given name exists.
+     * @throws \Cocur\NQM\Exception\QueryNotExistsException if no query with the given name exists.
      */
     public function getQuery($name);
 }

@@ -11,7 +11,6 @@
 
 namespace Cocur\NQM;
 
-use Cocur\NQM\NQM;
 use Mockery as m;
 use Pseudo\Pdo;
 
@@ -30,10 +29,10 @@ class NQMTest extends \PHPUnit_Framework_TestCase
     /** @var NQM */
     private $nqm;
 
-    /** @var \PDO */
+    /** @var \PDO|\Pseudo\Pdo */
     private $pdo;
 
-    /** @var Cocur\NQM\QueryLoader */
+    /** @var \Cocur\NQM\QueryLoader\QueryLoaderInterface|\Mockery\MockInterface */
     private $queryLoader;
 
     public function setUp()
@@ -163,10 +162,10 @@ class NQMTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Cocur\NQM\QueryLoader
+     * @return \Cocur\NQM\QueryLoader\QueryLoaderInterface
      */
     protected function getMockQueryLoader()
     {
-        return m::mock('Cocur\NQM\QueryLoader');
+        return m::mock('Cocur\NQM\QueryLoader\QueryLoaderInterface');
     }
 }

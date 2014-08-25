@@ -11,6 +11,8 @@
 
 namespace Cocur\NQM;
 
+use Cocur\NQM\Exception\QueryNotExistsException;
+use Cocur\NQM\QueryLoader\QueryLoaderInterface;
 use PDO;
 
 /**
@@ -18,7 +20,7 @@ use PDO;
  * filesystem (or using a cache like APC) and are retrieved when needed.
  *
  *     use Cocur\NQM\NQM;
- *     use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+ *     use Cocur\NQM\QueryLoader\FilesystemQueryLoader as FilesystemQueryLoader;
  *
  *     $loader = new FilesystemQueryLoader(__DIR__.'/queries');
  *     $pdo = new \PDO(...);
@@ -34,16 +36,16 @@ class NQM
     /** @var \PDO */
     private $pdo;
 
-    /** @var QueryLoader */
+    /** @var QueryLoaderInterface */
     private $queryLoader;
 
     /**
      * Constructor.
      *
      * @param PDO         $pdo
-     * @param QueryLoader $queryLoader
+     * @param QueryLoaderInterface $queryLoader
      */
-    public function __construct(PDO $pdo, QueryLoader $queryLoader)
+    public function __construct(PDO $pdo, QueryLoaderInterface $queryLoader)
     {
         $this->pdo = $pdo;
         $this->queryLoader = $queryLoader;
@@ -76,11 +78,11 @@ class NQM
     /**
      * Sets the query loader.
      *
-     * @param QueryLoader $queryLoader The query loader
+     * @param QueryLoaderInterface $queryLoader The query loader
      *
      * @return NQM
      */
-    public function setQueryLoader(QueryLoader $queryLoader)
+    public function setQueryLoader(QueryLoaderInterface $queryLoader)
     {
         $this->queryLoader = $queryLoader;
 
@@ -90,7 +92,7 @@ class NQM
     /**
      * Returns the query loader.
      *
-     * @return QueryLoader The query loader.
+     * @return QueryLoaderInterface The query loader.
      */
     public function getQueryLoader()
     {

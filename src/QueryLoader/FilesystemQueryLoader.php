@@ -22,7 +22,7 @@ use Cocur\NQM\Exception\QueryNotExistsException;
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  */
-class Filesystem
+class FilesystemQueryLoader implements QueryLoaderInterface
 {
     /** @var string */
     private $rootDir;
@@ -44,7 +44,7 @@ class Filesystem
      *
      * @param string $rootDir The root directory.
      *
-     * @return Filesystem
+     * @return FilesystemQueryLoader
      */
     public function setRootDir($rootDir)
     {

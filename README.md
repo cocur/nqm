@@ -24,24 +24,26 @@ You can install `cocur/nqm` using Composer:
 $ composer require cocur/nqm:@stable
 ```
 
-*Tipp: Use a concrete [version](https://github.com/cocur/nqm/releases) instead of `@stable`.*
+*Tip: Use a concrete [version](https://github.com/cocur/nqm/releases) instead of `@stable`.*
 
 
 Usage
 -----
 
-In order to use NQM you need to initialise the `Cocur\NQM\NQM` class with an instance of `\PDO` and a query loader. NQM comes with a Filesystem query loader.
+In order to use NQM you need to initialise the `Cocur\NQM\NQM` class with an instance of `\PDO` and a query loader. NQM
+comes with a FilesystemQueryLoader query loader.
 
 ```php
 use Cocur\NQM\NQM;
-use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+use Cocur\NQM\QueryLoader\FilesystemQueryLoader;
 
 $loader = new FilesystemQueryLoader(__DIR__.'/queries');
 $pdo = new \PDO(...);
 $nqm = new NQM($pdo, $loader);
 ```
 
-After you have initialised the `NQM` object you can use it. Currently the class has three public methods to retrieve a query, prepare a statement or execute a statement.
+After you have initialised the `NQM` object you can use it. Currently the class has three public methods to retrieve a
+query, prepare a statement or execute a statement.
 
 The following command will return the SQL query stored in `./queries/find-all-users.sql`.
 
@@ -64,11 +66,14 @@ $stmt = $nqm->execute('find-user-by-id', [':id' => 42]);
 
 ### Query Cache
 
-To speed up loading of queries you can use the `Cocur\NQM\QueryLoader\Cache` to cache queries. The cache class implements the same interface as the other query loaders and the constructor accepts an instance of `QueryLoaderInterface`. If a query does not exist in the cache, the cache uses this loader to load the query. For example,
+To speed up loading of queries you can use the `Cocur\NQM\QueryLoader\CacheQueryLoader` to cache queries. The cache
+class implements the same interface as the other query loaders and the constructor accepts an instance of
+`QueryLoaderInterface`. If a query does not exist in the cache, the cache uses this loader to load the query. For
+example,
 
 ```php
-use Cocur\NQM\QueryLoader\Cache as CacheQueryLoader;
-use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+use Cocur\NQM\QueryLoader\CacheQueryLoader;
+use Cocur\NQM\QueryLoader\FilesystemQueryLoader;
 
 $loader = new FilesystemQueryLoader(__DIR__.'/queries');
 $cache = new CacheQueryLoader($loader);
@@ -79,11 +84,12 @@ $nqm = new NQM($pdo, $cache);
 
 ### APC Query Cache
 
-The `Cache` query loader stores cached queries in an array and therefore only on a per-request basis. While this often suffices in CLI applications for web apps it would be better to cache queries over multiple requests.
+The `CacheQueryLoader` query loader stores cached queries in an array and therefore only on a per-request basis. While
+this often suffices in CLI applications for web apps it would be better to cache queries over multiple requests.
 
 ```php
-use Cocur\NQM\QueryLoader\Apc as ApcQueryLoader;
-use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+use Cocur\NQM\QueryLoader\ApcQueryLoader;
+use Cocur\NQM\QueryLoader\FilesystemQueryLoader;
 
 $loader = new FilesystemQueryLoader(__DIR__.'/queries');
 $apc = new ApcQueryLoader($loader);
@@ -92,12 +98,14 @@ $pdo = new \PDO(...);
 $nqm = new NQM($pdo, $apc);
 ```
 
-Additionally if you have queries that you use more than once in a single request you can stack multiple query loaders. In the following example NQM will load queries from the array cache or if it's not cached it will look in the APC cache. As a last resort NQM loads the query from the filesystem.
+Additionally if you have queries that you use more than once in a single request you can stack multiple query loaders.
+In the following example NQM will load queries from the array cache or if it's not cached it will look in the APC cache.
+As a last resort NQM loads the query from the filesystem.
 
 ```php
-use Cocur\NQM\QueryLoader\Apc as ApcQueryLoader;
-use Cocur\NQM\QueryLoader\Cache as CacheQueryLoader;
-use Cocur\NQM\QueryLoader\Filesystem as FilesystemQueryLoader;
+use Cocur\NQM\QueryLoader\ApcQueryLoader;
+use Cocur\NQM\QueryLoader\CacheQueryLoader;
+use Cocur\NQM\QueryLoader\FilesystemQueryLoader;
 
 $loader = new FilesystemQueryLoader(__DIR__.'/queries');
 $apc = new ApcQueryLoader($loader);
@@ -108,8 +116,8 @@ $nqm = new NQM($pdo, $cache);
 ```
 
 
-Changelog
----------
+Change log
+----------
 
 ### Version 0.1 (28 May 2014)
 
@@ -128,4 +136,5 @@ Author
 License
 -------
 
-The MIT license applies to `cocur/nqm`. For the full copyright and license information, please view the LICENSE file distributed with this source code.
+The MIT license applies to `cocur/nqm`. For the full copyright and license information, please view the LICENSE file
+distributed with this source code.
