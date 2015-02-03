@@ -119,6 +119,10 @@ $nqm = new NQM($pdo, $cache);
 Change log
 ----------
 
+### Version 0.1.2 (3 February 2015)
+
+- Moved development packages to `require-dev` in `composer.json`
+
 ### Version 0.1.1 (26 August 2014)
 
 - Renamed query loader class names
