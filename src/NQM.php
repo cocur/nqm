@@ -126,7 +126,7 @@ class NQM
      *
      * @return \PDOStatement
      */
-    public function prepare($name, $options = null)
+    public function prepare($name, $options = [])
     {
         return $this->pdo->prepare($this->getQuery($name), $options);
     }
@@ -142,7 +142,7 @@ class NQM
      *
      * @return \PDOStatement
      */
-    public function execute($name, $parameters = null, $options = null)
+    public function execute($name, $parameters = [], $options = [])
     {
         $stmt = $this->prepare($name, $options);
         $stmt->execute($this->convertParameters($parameters));
