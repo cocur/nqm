@@ -115,9 +115,26 @@ $pdo = new \PDO(...);
 $nqm = new NQM($pdo, $cache);
 ```
 
+### Doctrine Bridge
+
+If you don't have a `PDO` object, but a Doctrine `EntityManager` object you can use the Doctrine bridge to create
+a new `NQM` object.
+
+
+```php
+use Cocur\NQM\Bridge\Doctrine\NQMFactory;
+
+$nqm = NQMFactory::createFromEntityManager($entityManager, $queryLoader);
+// NQM(...) object
+```
+
 
 Change log
 ----------
+
+### Version 0.2 (11 February 2015)
+
+- Add Doctrine brdige
 
 ### Version 0.1.2 (3 February 2015)
 
