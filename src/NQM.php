@@ -52,20 +52,6 @@ class NQM
     }
 
     /**
-     * Sets the PDO connection.
-     *
-     * @param PDO $pdo PDO connection
-     *
-     * @return NQM
-     */
-    public function setPdo(PDO $pdo)
-    {
-        $this->pdo = $pdo;
-
-        return $this;
-    }
-
-    /**
      * Returns the PDO connection.
      *
      * @return PDO PDO connection.
@@ -73,20 +59,6 @@ class NQM
     public function getPdo()
     {
         return $this->pdo;
-    }
-
-    /**
-     * Sets the query loader.
-     *
-     * @param QueryLoaderInterface $queryLoader The query loader
-     *
-     * @return NQM
-     */
-    public function setQueryLoader(QueryLoaderInterface $queryLoader)
-    {
-        $this->queryLoader = $queryLoader;
-
-        return $this;
     }
 
     /**

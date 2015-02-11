@@ -64,32 +64,6 @@ class NQMTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Cocur\NQM\NQM::setPdo()
-     * @covers Cocur\NQM\NQM::getPdo()
-     */
-    public function setPdoShouldSetPdo()
-    {
-        $pdo = $this->getMockPdo();
-        $this->nqm->setPdo($pdo);
-        $this->assertEquals($pdo, $this->nqm->getPdo());
-    }
-
-    /**
-     * @test
-     *
-     * @covers Cocur\NQM\NQM::setQueryLoader()
-     * @covers Cocur\NQM\NQM::getQueryLoader()
-     */
-    public function setQueryLoaderShouldSetQueryLoader()
-    {
-        $loader = $this->getMockQueryLoader();
-        $this->nqm->setQueryLoader($loader);
-        $this->assertEquals($loader, $this->nqm->getQueryLoader());
-    }
-
-    /**
-     * @test
-     *
      * @covers Cocur\NQM\NQM::getQuery()
      */
     public function getQueryShouldReturnQuery()
