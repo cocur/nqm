@@ -91,7 +91,6 @@ class NQMTest extends \PHPUnit_Framework_TestCase
      * @test
      *
      * @covers Cocur\NQM\NQM::execute()
-     * @covers Cocur\NQM\NQM::convertParameters()
      */
     public function executeShouldExecutePdoStatement()
     {
@@ -111,7 +110,6 @@ class NQMTest extends \PHPUnit_Framework_TestCase
      * @test
      *
      * @covers Cocur\NQM\NQM::execute()
-     * @covers Cocur\NQM\NQM::convertParameters()
      */
     public function convertParametersShouldNotAddColonIfItIsThere()
     {

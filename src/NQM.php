@@ -117,28 +117,8 @@ class NQM
     public function execute($name, $parameters = [], $options = [])
     {
         $stmt = $this->prepare($name, $options);
-        $stmt->execute($this->convertParameters($parameters));
+        $stmt->execute(QueryHelper::convertParameters($parameters));
 
         return $stmt;
-    }
-
-    /**
-     * Prepends a colon to each parameter key.
-     *
-     * @param array $parameters
-     *
-     * @return array
-     */
-    protected function convertParameters(array $parameters)
-    {
-        $new = [];
-        foreach ($parameters as $key => $value) {
-            if (':' !== substr($key, 0, 1)) {
-                $key = ':'.$key;
-            }
-            $new[$key] = $value;
-        }
-
-        return $new;
     }
 }
