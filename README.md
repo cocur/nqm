@@ -134,7 +134,7 @@ Change log
 
 ### Version 0.2 (11 February 2015)
 
-- Add Doctrine brdige
+- Add Doctrine bridge
 
 ### Version 0.1.2 (3 February 2015)
 
