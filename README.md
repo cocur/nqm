@@ -119,7 +119,15 @@ $nqm = new NQM($pdo, $cache);
 
 Sometimes you have multiple queries that are always executed together. For example, a `DROP TABLE`, `CREATE TABLE`
 sequence or if you have to create temporary tables for especially complex queries. Since PDO accepts only a single
-SQL statement per statement, you can use `QueryCollection` to execute multiple queries.
+SQL statement per statement, you can use `QueryCollection` to execute multiple queries. Queries must be separated by
+`#;`, which must be placed on its own line.
+
+
+```sql
+DROP TABLE IF EXISTS users;
+#;
+CREATE TABLE users (...);
+```
 
 ```php
 use Cocur\NQM\QueryCollection;
@@ -158,6 +166,10 @@ $nqm = NQMFactory::createFromEntityManager($entityManager, $queryLoader);
 
 Change log
 ----------
+
+### Version 0.3 (16 February 2015)
+
+- Add support for query collections
 
 ### Version 0.2 (11 February 2015)
 
