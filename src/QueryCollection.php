@@ -12,14 +12,14 @@
 namespace Cocur\NQM;
 
 /**
- * NQMCollection
+ * QueryCollection
  *
  * @package   cocur/nqm
  * @author    Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright 2013-2015 Florian Eckerstorfer
  * @license   http://opensource.org/licenses/MIT The MIT License
  */
-class NQMCollection
+class QueryCollection
 {
     /**
      * @var NQM
@@ -27,11 +27,18 @@ class NQMCollection
     private $nqm;
 
     /**
-     * @param NQM $nqm
+     * @var string
      */
-    public function __construct(NQM $nqm)
+    private $separator;
+
+    /**
+     * @param NQM    $nqm
+     * @param string $separator
+     */
+    public function __construct(NQM $nqm, $separator = "\n#;\n")
     {
-        $this->nqm = $nqm;
+        $this->nqm       = $nqm;
+        $this->separator = $separator;
     }
 
     /**
@@ -41,7 +48,7 @@ class NQMCollection
      */
     public function getQueries($name)
     {
-        return array_map('trim', preg_split("/\n#;\n/", $this->nqm->getQuery($name)));
+        return array_map('trim', preg_split('/'.$this->separator.'/', $this->nqm->getQuery($name)));
     }
 
     /**

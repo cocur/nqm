@@ -15,7 +15,7 @@ use Mockery as m;
 use Pseudo\Pdo;
 
 /**
- * NQMCollectionTest
+ * QueryCollectionTest
  *
  * @category  test
  * @package   cocur/nqm
@@ -24,10 +24,10 @@ use Pseudo\Pdo;
  * @license   http://opensource.org/licenses/MIT The MIT License
  * @group     unit
  */
-class NQMCollectionTest extends \PHPUnit_Framework_TestCase
+class QueryCollectionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var NQMCollection
+     * @var QueryCollection
      */
     private $collection;
 
@@ -39,12 +39,13 @@ class NQMCollectionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->nqm        = $this->getMockNQM();
-        $this->collection = new NQMCollection($this->nqm);
+        $this->collection = new QueryCollection($this->nqm);
     }
 
     /**
      * @test
-     * @covers Cocur\NQM\NQMCollection::getQueries()
+     * @covers Cocur\NQM\QueryCollection::__construct()
+     * @covers Cocur\NQM\QueryCollection::getQueries()
      */
     public function getQueriesReturnsListOfQueries()
     {
@@ -63,7 +64,8 @@ class NQMCollectionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\NQMCollection::getQueries()
+     * @covers Cocur\NQM\QueryCollection::__construct()
+     * @covers Cocur\NQM\QueryCollection::getQueries()
      */
     public function getQueriesDoesNotSplitSeparatorInQuery()
     {
@@ -77,7 +79,7 @@ class NQMCollectionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\NQMCollection::prepare()
+     * @covers Cocur\NQM\QueryCollection::prepare()
      */
     public function preparePreparesMultipleStatements()
     {
@@ -100,7 +102,9 @@ class NQMCollectionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\NQMCollection::execute()
+     * @covers Cocur\NQM\QueryCollection::__construct()
+     * @covers Cocur\NQM\QueryCollection::execute()
+     * @covers Cocur\NQM\QueryCollection::getQueryParameters()
      */
     public function executeExecutesMultipleStatements()
     {
@@ -123,7 +127,9 @@ class NQMCollectionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\NQM\NQMCollection::execute()
+     * @covers Cocur\NQM\QueryCollection::__construct()
+     * @covers Cocur\NQM\QueryCollection::execute()
+     * @covers Cocur\NQM\QueryCollection::getQueryParameters()
      */
     public function executeExecutesMultipleStatementsWithDifferentParameters()
     {
