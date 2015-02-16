@@ -99,7 +99,7 @@ class StatementCollection implements Countable, ArrayAccess
     }
 
     /**
-     * @param int
+     * @param int $offset
      *
      * @return PDOStatement
      */
