@@ -115,6 +115,33 @@ $pdo = new \PDO(...);
 $nqm = new NQM($pdo, $cache);
 ```
 
+### Query Collection
+
+Sometimes you have multiple queries that are always executed together. For example, a `DROP TABLE`, `CREATE TABLE`
+sequence or if you have to create temporary tables for especially complex queries. Since PDO accepts only a single
+SQL statement per statement, you can use `QueryCollection` to execute multiple queries.
+
+```php
+use Cocur\NQM\QueryCollection;
+
+$collection = NQMQueryCollection($nqm);
+// Just prepare the statements
+$statements = $collection->prepare('drop-and-create-user-table');
+
+// Prepare and execute the statements
+$statements = $collection->execute('drop-and-create-user-table', ['foo'=>'bar']);
+```
+
+The `prepare()` and `execute()` methods return both a `Cocur\NQM\StatementCollection`. This collection class implements
+`\ArrayAccess` and `\Countable`.
+
+```php
+$statements->all(); // -> \PDOStatement[]
+$statements->first(); // -> \PDOStatement
+$statements->last(); // -> \PDOStatement
+```
+
+
 ### Doctrine Bridge
 
 If you don't have a `PDO` object, but a Doctrine `EntityManager` object you can use the Doctrine bridge to create
