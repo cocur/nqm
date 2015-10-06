@@ -115,6 +115,16 @@ $pdo = new \PDO(...);
 $nqm = new NQM($pdo, $cache);
 ```
 
+### Array Query Loader
+
+Stores the queries in an array.
+
+```php
+use Cocur\NQM\QueryLoader\ArrayQueryLoader;
+
+$loader = new ArrayQueryLoader(['foo' => 'SELECT ...;']);
+```
+
 ### Query Collection
 
 Sometimes you have multiple queries that are always executed together. For example, a `DROP TABLE`, `CREATE TABLE`
@@ -166,6 +176,10 @@ $nqm = NQMFactory::createFromEntityManager($entityManager, $queryLoader);
 
 Change log
 ----------
+
+### Version 0.4 (6 October 2015)
+
+- Add `ArrayQueryLoader`
 
 ### Version 0.3 (16 February 2015)
 
